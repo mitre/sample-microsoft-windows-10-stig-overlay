@@ -1,3 +1,3 @@
-# Example InSpec Profile
+# Microsoft Windows 10 STIG Overlay
 
-This example shows the implementation of an InSpec profile.
+Overlay for the microsoft-windows-10-stig-baseline profile based on provided requirements.

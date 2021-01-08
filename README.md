@@ -98,6 +98,17 @@ The JSON results output file can be loaded into __[heimdall-lite](https://heimda
 
 The JSON InSpec results file may also be loaded into a __[full heimdall server](https://github.com/mitre/heimdall)__, allowing for additional functionality such as to store and compare multiple profile runs.
 
+
+
+## Testing the Profile
+
+The included `kitchen.yml` and `kitchen.inputs.yml` files can be used to test the overlay using [Chef Test-Kitchen](https://kitchen.ci/). Start by installing [Chef-Workstation](https://downloads.chef.io/chef-workstation), [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html). Run the following commmand to test the profile:
+
+```bash
+kitchen test
+```
+
+
 ## Contributing and Getting Help
 To report a bug or feature request, please open an [issue](https://github.com/njohnson11/microsoft-windows-10-stig-overlay/issues/new).
 

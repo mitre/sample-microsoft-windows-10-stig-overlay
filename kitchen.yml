@@ -1,0 +1,48 @@
+---
+driver:
+  name: vagrant
+  guest: :windows
+  gui: false
+  winrm:
+    username: vagrant
+    password: vagrant
+  customize:
+    cpus: 4
+    memory: 8192
+    accelerate3d: "off"
+    accelerate2dvideo: "off"
+    audio: "none"
+    usbcardreader: "off"
+    vrde: "off"
+    usb: "off"
+    nictype1: "82540EM"
+    clipboard: "disabled"
+
+verifier:
+  name: inspec
+  sudo: true
+  reporter:
+    - cli
+    - json:spec/results/%{platform}_%{suite}.json
+  inspec_tests:
+    - name: Microsoft Windows 10 STIG Overlay 
+      path: .
+  input_files:
+    - kitchen.inputs.yml
+  load_plugins: true
+
+transport:
+  name: winrm
+
+platforms:
+  - name: windows-10-lts
+    driver:
+      name: vagrant
+      box: gusztavvargadr/windows-10-enterprise-ltsc
+suites:
+  - name: vanilla
+    verifier:
+      name: inspec
+
+driver:
+  name: vagrant

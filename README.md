@@ -110,7 +110,7 @@ kitchen test
 
 
 ## Contributing and Getting Help
-To report a bug or feature request, please open an [issue](https://github.com/njohnson11/microsoft-windows-10-stig-overlay/issues/new).
+To report a bug or feature request, please open an [issue](https://github.com/njohnson11/sample-microsoft-windows-10-stig-overlay/issues/new).
 
 ### NOTICE 
 

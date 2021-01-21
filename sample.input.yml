@@ -1,0 +1,37 @@
+# List of authorized users in the Backup Operators Group
+backup_operators: []
+
+# List of authorized users in the local Administrators group
+administrators: []
+
+# List of authorized users in the local Administrators domain group
+administrators_domain: []
+
+# List of temporary accounts on the system
+temp_account: []
+
+# List of emergency accounts on the system
+emergency_account: []
+
+# List of authorized users in the local Administrators domain group
+administrator_domain_group: []
+
+# List of shared accounts on the system
+shared_accounts: []
+
+# Set to true server has the ftp server role
+has_ftp_server_role: true
+
+# Domain Controller forest name
+forrest: ''
+
+# Default administator account
+admin_account: ''
+
+# Set to true if the system is dedicated to the management of Active Directory
+is_AD_only_system: false
+
+# A list of all manually managed Application and Service account names
+manually_managed_app_service_accounts: []
+
+

@@ -29,7 +29,7 @@ verifier:
     - name: Sample Microsoft Windows 10 STIG Overlay 
       path: .
   input_files:
-    - sample.inputs.yml
+    - sample.input.yml
   load_plugins: true
 
 transport:

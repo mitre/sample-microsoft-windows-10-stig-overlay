@@ -7,8 +7,9 @@ driver:
     username: vagrant
     password: vagrant
   customize:
-    cpus: 4
-    memory: 8192
+    cpus: 2
+    vram: 64
+    memory: 4096
     accelerate3d: "off"
     accelerate2dvideo: "off"
     audio: "none"
@@ -25,10 +26,10 @@ verifier:
     - cli
     - json:spec/results/%{platform}_%{suite}.json
   inspec_tests:
-    - name: Microsoft Windows 10 STIG Overlay 
+    - name: Sample Microsoft Windows 10 STIG Overlay 
       path: .
   input_files:
-    - kitchen.inputs.yml
+    - sample.inputs.yml
   load_plugins: true
 
 transport:
@@ -44,5 +45,3 @@ suites:
     verifier:
       name: inspec
 
-driver:
-  name: vagrant

@@ -1,4 +1,4 @@
-# microsoft-windows-10-stig-overlay
+# sample-microsoft-windows-10-stig-overlay
 
 Overlay for the baseline InSpec profile at https://github.com/mitre/microsoft-windows-10-stig-baseline with modifications based on provided requirements.
 
@@ -60,7 +60,7 @@ manually_managed_app_service_accounts: []
 
 ```
 # How to run
-inspec exec https://github.com/njohnson11/microsoft-windows-10-stig-overlay/archive/main.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec https://github.com/njohnson11/sample-microsoft-windows-10-stig-overlay/archive/main.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
 ### Different Run Options
@@ -78,17 +78,17 @@ When the __"runner"__ host uses this profile overlay for the first time, follow 
 ```
 mkdir profiles
 cd profiles
-git clone https://github.com/njohnson11/microsoft-windows-10-stig-overlay.git
-inspec archive microsoft-windows-10-stig-overlay
+git clone https://github.com/njohnson11/sample-microsoft-windows-10-stig-overlay.git
+inspec archive sample-microsoft-windows-10-stig-overlay
 inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```
-cd microsoft-windows-10-stig-overlay
+cd sample-microsoft-windows-10-stig-overlay
 git pull
 cd ..
-inspec archive microsoft-windows-10-stig-overlay --overwrite
+inspec archive sample-microsoft-windows-10-stig-overlay --overwrite
 inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 

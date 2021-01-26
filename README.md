@@ -18,40 +18,40 @@ The following inputs must be configured in an inputs ".yml" file for the profile
 
 ```
 
-# Description: 'List of authorized users in the Backup Operators Group'
+# List of authorized users in the Backup Operators group
 backup_operators: []
 
-# Description: 'List of authorized users in the local Administrators group'
+# List of authorized users in the local Administrators group
 administrators: []
 
-# Description: 'List of authorized users in the local Administrators domain group'
+# List of authorized users in the local Administrators domain group
 administrators_domain: []
 
-# Description: 'List of temporary accounts on the system'
+# List of temporary accounts on the system
 temp_account: []
 
-# Description: 'List of emergency accounts on the system'
+# List of emergency accounts on the system
 emergency_account: []
 
-# Description: 'List of authorized users in the local Administrators domain group'
+# List of authorized users in the local Administrators domain group
 administrator_domain_group: []
 
-# Description: 'List of shared accounts on the system'
+# List of shared accounts on the system
 shared_accounts: []
 
-# Description: 'Set to true server has the ftp server role'
+# Set to true server has the ftp server role
 has_ftp_server_role: true
 
-# Description: 'Domain Controller forrest name'
+# Domain Controller forrest name
 forrest: ''
 
-# Description: 'Default administator account'
+# Default administator account
 admin_account: ''
 
-# Description: 'Set to true if the system is dedicated to the management of Active Directory'
+# Set to true if the system is dedicated to the management of Active Directory
 is_AD_only_system: false
 
-# Description: 'A list of all manually managed Application and Service account names'
+# A list of all manually managed Application and Service account names
 manually_managed_app_service_accounts: []
 
 ```

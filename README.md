@@ -4,12 +4,21 @@ Overlay for the baseline InSpec profile at https://github.com/mitre/microsoft-wi
 
 ## Getting Started  
 It is intended and recommended that InSpec and this profile be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target [ remotely over __winrm__].
-    
+
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
-Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
+__The simplest way to install InSpec is to use this command for *nix or Mac:
+```
+curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+```
 
-Git is required to download the latest InSpec profiles using the instructions below. Git can be downloaded from the [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) site. 
+__or this command for Windows (Powershell)__
+```
+. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project inspec
+```
+
+Latest versions and other installation options are available at the [InSpec](http://inspec.io/) site.
+
 
 ## Tailoring to Your Environment
 The following inputs must be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).

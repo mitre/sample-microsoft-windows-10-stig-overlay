@@ -1,8 +1,6 @@
 # sample-microsoft-windows-10-stig-overlay
 
-Overlay for the baseline InSpec profile at https://github.com/mitre/microsoft-windows-10-stig-baseline with modifications based on provided requirements.
-
-InSpec profile overlay to validate the secure configuration of Microsoft Windows 10 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Microsoft Windows 10 STIG.
+Overlay for the baseline InSpec profile at https://github.com/mitre/microsoft-windows-10-stig-baseline with modifications based on provided requirements. The baseline InSpec profile is used validate the secure configuration of Microsoft Windows 10 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Microsoft Windows 10 STIG.
 
 ## Getting Started  
 It is intended and recommended that InSpec and this profile be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target [ remotely over __winrm__].

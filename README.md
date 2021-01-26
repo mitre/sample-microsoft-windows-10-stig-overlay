@@ -58,7 +58,7 @@ manually_managed_app_service_accounts: []
 
 ```
 # How to run
-inspec exec https://github.com/mitre/sample-microsoft-windows-10-stig-overlay/archive/main.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec https://github.com/mitre/sample-microsoft-windows-10-stig-overlay/archive/main.tar.gz -t winrm://<user>@<host> --password <password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
 ### Different Run Options
@@ -78,7 +78,7 @@ mkdir profiles
 cd profiles
 git clone https://github.com/mitre/sample-microsoft-windows-10-stig-overlay.git
 inspec archive sample-microsoft-windows-10-stig-overlay
-inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec <name of generated archive> -t winrm://<user>@<host> --password <password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
@@ -87,7 +87,7 @@ cd sample-microsoft-windows-10-stig-overlay
 git pull
 cd ..
 inspec archive sample-microsoft-windows-10-stig-overlay --overwrite
-inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> -t winrm://<hostname> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec <name of generated archive> -t winrm://<user>@<host> --password <password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
 ## Using Heimdall for Viewing the JSON Results

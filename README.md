@@ -7,7 +7,7 @@ It is intended and recommended that InSpec and this profile be run from a __"run
 
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
-__The simplest way to install InSpec is to use this command for *nix or Mac:
+__The simplest way to install InSpec is to use this command for *nix or Mac:__
 ```
 curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
 ```
@@ -25,41 +25,20 @@ The following inputs must be configured in an inputs ".yml" file for the profile
 
 ```
 
+# Set flag to "true" if the target system is sensitive
+sensitive_system: "false"
+
 # List of authorized users in the Backup Operators group
-backup_operators: []
+backup_operators: 
 
 # List of authorized users in the local Administrators group
 administrators: []
 
-# List of authorized users in the local Administrators domain group
-administrators_domain: []
+# List of authorized users in the Hyper-V Group
+hyper_v_admin: []
 
-# List of temporary accounts on the system
-temp_account: []
-
-# List of emergency accounts on the system
-emergency_account: []
-
-# List of authorized users in the local Administrators domain group
-administrator_domain_group: []
-
-# List of shared accounts on the system
-shared_accounts: []
-
-# Set to true server has the ftp server role
-has_ftp_server_role: true
-
-# Domain Controller forrest name
-forrest: ''
-
-# Default administator account
-admin_account: ''
-
-# Set to true if the system is dedicated to the management of Active Directory
-is_AD_only_system: false
-
-# A list of all manually managed Application and Service account names
-manually_managed_app_service_accounts: []
+# This is a list of Approved Anti-Virus Software
+av_approved_software: ["Windows Defender", "McAfee Host Intrusion Prevention", "McAfee Endpoint Security", "McAfee Agent"]
 
 ```
 
@@ -89,6 +68,7 @@ git clone https://github.com/mitre/sample-microsoft-windows-10-stig-overlay.git
 inspec archive sample-microsoft-windows-10-stig-overlay
 inspec exec <name of generated archive> -t winrm://<user>@<host> --password <password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
+
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```

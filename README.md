@@ -9,12 +9,12 @@ __For the best security of the runner, always install on the runner the _latest 
 
 __The simplest way to install InSpec is to use this command for *nix or Mac:__
 ```
-curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chef-workstation
 ```
 
 __or this command for Windows (Powershell)__
 ```
-. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project inspec
+. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project chef-workstation
 ```
 
 Latest versions and other installation options are available at the [InSpec](http://inspec.io/) site.

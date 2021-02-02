@@ -1,0 +1,4 @@
+.kitchen/
+Policyfile.lock.json
+inspec.lock
+spec/

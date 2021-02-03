@@ -50,7 +50,7 @@ jobs:
       - name: Display our Windows 10 results summary
         run: |
           cd test/cookbooks/Win10STIGOverlay
-          bundle exec inspec_tools summary -j windows-10-${{ matrix.suite }}-test-results.json --json-counts | jq .
+          bundle exec inspec_tools summary -j ${{ matrix.suite }}-test-results.json --json-counts | jq .
       - name: Save Test Result JSON
         uses: actions/upload-artifact@v2
         with:

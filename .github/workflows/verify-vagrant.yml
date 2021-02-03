@@ -39,8 +39,9 @@ jobs:
           bundle install
       - name: Run kitchen test
         run: |
-          bundle exec kitchen list --log-level=debug
-          bundle exec kitchen test --destroy=always --log-level=debug vanilla-windows-10
+          bundle exec kitchen --version || true
+          bundle exec kitchen list --log-level=debug all || true
+          bundle exec kitchen test --destroy=always --log-level=debug vanilla-windows-10 || true
       - name: Display our Windows 10 results summary
         run: bundle exec inspec_tools summary -j spec/results/windows-10_vanilla-results.json --json-counts | jq .
       - name: Save Test Result JSON

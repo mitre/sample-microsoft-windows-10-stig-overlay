@@ -8,7 +8,7 @@ driver:
     password: vagrant
   customize:
     cpus: 2
-    vram: 32
+    vram: 36 
     memory: 4096
     accelerate3d: "off"
     accelerate2dvideo: "off"

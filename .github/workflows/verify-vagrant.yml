@@ -38,11 +38,13 @@ jobs:
           bundle config path vendor/bundle
           bundle install
       - name: Run kitchen test
-        run: bundle exec kitchen test || true
+        run: |
+          ls -l
+          bundle exec kitchen test || true
       - name: Display our Windows 10 results summary
-        run: bundle exec inspec_tools summary -j windows-10-test-result.json --json-counts | jq .
+        run: bundle exec inspec_tools summary -j spec/results/windows-10_vanilla-results.json --json-counts | jq .
       - name: Save Test Result JSON
         uses: actions/upload-artifact@v2
         with:
-          path: ./*-result.json
+          path: ./spec/results/*-results.json
 

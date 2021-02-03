@@ -11,6 +11,10 @@ jobs:
   validate-profile:
     name: Validate profile
     runs-on: macos-latest
+    strategy:
+      matrix:
+        suite: ['Win10STIGOverlay']
+      fail-fast: false
     env:
       CHEF_LICENSE: accept-silent
       KITCHEN_YAML: kitchen.vagrant.yml
@@ -39,13 +43,16 @@ jobs:
           bundle install
       - name: Run kitchen test
         run: |
+          cd test/cookbooks/Win10STIGOverlay
           bundle exec kitchen --version || true
           bundle exec kitchen list --log-level=debug all || true
-          bundle exec kitchen test --destroy=always --log-level=debug vanilla-windows-10 || true
+          bundle exec kitchen test --destroy=always --log-level=debug ${{ matrix.suite }} || true
       - name: Display our Windows 10 results summary
-        run: bundle exec inspec_tools summary -j spec/results/windows-10_vanilla-results.json --json-counts | jq .
+        run: |
+          cd test/cookbooks/Win10STIGOverlay
+          bundle exec inspec_tools summary -j ${{ matrix.suite }}-test-results.json --json-counts | jq .
       - name: Save Test Result JSON
         uses: actions/upload-artifact@v2
         with:
-          path: ./spec/results/*-results.json
+          path: test/cookbooks/Win10STIGOverlay/*-results.json
 

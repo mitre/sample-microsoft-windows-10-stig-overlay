@@ -17,7 +17,6 @@ jobs:
       fail-fast: false
     env:
       CHEF_LICENSE: accept-silent
-      KITCHEN_YAML: kitchen.vagrant.yml
     steps:
       - name: Add jq for output formatting
         run: brew install jq
@@ -44,12 +43,12 @@ jobs:
       - name: Run kitchen test
         run: |
           cd test/cookbooks/Win10STIGOverlay
-          bundle exec kitchen --version || true
           bundle exec kitchen list --log-level=debug all || true
           bundle exec kitchen test --destroy=always --log-level=debug ${{ matrix.suite }} || true
       - name: Display our Windows 10 results summary
         run: |
           cd test/cookbooks/Win10STIGOverlay
+          ls -l
           bundle exec inspec_tools summary -j windows-10-${{ matrix.suite }}-test-results.json --json-counts | jq .
       - name: Save Test Result JSON
         uses: actions/upload-artifact@v2

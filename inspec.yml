@@ -1,5 +1,9 @@
 name: sample-microsoft-windows-10-stig-overlay
 title: Sample Windows 10 Security Techincal Implementation Guide Overlay
+summary: "Overlay for the baseline InSpec profile at https://github.com/mitre/microsoft-windows-10-stig-baseline with modifications based on provided requirements."
+maintainer: The Authors
+copyright: The Authors
+copyright_email: you@example.com
 license: Apache-2.0
 version: 0.1.0
 depends:

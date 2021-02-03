@@ -8,7 +8,7 @@ driver:
     password: vagrant
   customize:
     cpus: 2
-    vram: 64
+    vram: 36 
     memory: 4096
     accelerate3d: "off"
     accelerate2dvideo: "off"
@@ -16,8 +16,8 @@ driver:
     usbcardreader: "off"
     vrde: "off"
     usb: "off"
-    nictype1: "82540EM"
     clipboard: "disabled"
+    graphicscontroller: "vboxsvga" 
 
 verifier:
   name: inspec
@@ -29,17 +29,21 @@ verifier:
     - name: Sample Microsoft Windows 10 STIG Overlay 
       path: .
   input_files:
-    - sample.input.yml
+    - kitchen.vagrant.yml
   load_plugins: true
 
 transport:
   name: winrm
 
 platforms:
-  - name: windows-10-lts
+  - name: windows-10
+    os_type: windows
+    shell_type: powershell
     driver:
       name: vagrant
-      box: gusztavvargadr/windows-10-enterprise-ltsc
+      vm_hostname: windows-10
+      box: gusztavvargadr/windows-10 
+
 suites:
   - name: vanilla
     verifier:

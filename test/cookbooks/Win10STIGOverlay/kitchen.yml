@@ -24,10 +24,10 @@ verifier:
   sudo: true
   reporter:
     - cli
-    - json:spec/results/%{platform}_%{suite}-results.json
+    - json:%{suite}-test-results.json
   inspec_tests:
     - name: Sample Microsoft Windows 10 STIG Overlay 
-      path: .
+      path: ../../../
   input_files:
     - kitchen.vagrant.yml
   load_plugins: true
@@ -45,7 +45,7 @@ platforms:
       box: gusztavvargadr/windows-10 
 
 suites:
-  - name: vanilla
+  - name: Win10STIGOverlay
     verifier:
       name: inspec
 

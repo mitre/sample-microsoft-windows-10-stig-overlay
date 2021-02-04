@@ -1,4 +1,5 @@
 .kitchen/
+vendor/
 Policyfile.lock.json
 inspec.lock
 spec/

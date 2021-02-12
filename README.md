@@ -87,15 +87,6 @@ The JSON InSpec results file may also be loaded into a __[full heimdall server](
 
 
 
-## Testing the Profile
-
-The included `kitchen.yml` and `sample.input.yml` files can be used to test the overlay using [Chef Test-Kitchen](https://kitchen.ci/). Start by installing [Chef-Workstation](https://downloads.chef.io/chef-workstation), [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html). Run the following commmand to test the profile:
-
-```bash
-kitchen test
-```
-
-
 ## Contributing and Getting Help
 To report a bug or feature request, please open an [issue](https://github.com/mitre/sample-microsoft-windows-10-stig-overlay/issues/new).
 

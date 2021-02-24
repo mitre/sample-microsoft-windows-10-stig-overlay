@@ -44,7 +44,7 @@ jobs:
         run: |
           cd test/cookbooks/Win10STIGOverlay
           bundle exec kitchen list --log-level=debug all || true
-          bundle exec kitchen test --destroy=always --log-level=debug ${{ matrix.suite }} || true
+          bundle exec kitchen test --destroy=always ${{ matrix.suite }} || true
       - name: Display our Windows 10 results summary
         run: |
           cd test/cookbooks/Win10STIGOverlay
@@ -53,4 +53,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: test/cookbooks/Win10STIGOverlay/*-results.json
+          if-no-files-found: error
 

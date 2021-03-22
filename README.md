@@ -26,7 +26,7 @@ The following inputs must be configured in an inputs ".yml" file for the profile
 ```
 
 # Set flag to "true" if the target system is sensitive
-sensitive_system: "false"
+is_sensitive_system: "false"
 
 # List of authorized users in the Backup Operators group
 backup_operators: 
@@ -39,6 +39,8 @@ hyper_v_admin: []
 
 # This is a list of Approved Anti-Virus Software
 av_approved_software: ["Windows Defender", "McAfee Host Intrusion Prevention", "McAfee Endpoint Security", "McAfee Agent"]
+
+bitlocker_status: []
 
 ```
 

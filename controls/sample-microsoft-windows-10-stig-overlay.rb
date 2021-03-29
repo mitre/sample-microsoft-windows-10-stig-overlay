@@ -384,8 +384,8 @@ include_controls 'microsoft-windows-10-stig-baseline' do
 
           If one of the following settings does not exist and is not populated, this is a finding: 
           
-          Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers
-          Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards"
+          Computer\\HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers
+          Computer\\HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards"
 
     desc "fix", "For non-domain joined systems, configuring Windows Hello for sign on options
           would be suggested based on the organizations needs and capabilities.

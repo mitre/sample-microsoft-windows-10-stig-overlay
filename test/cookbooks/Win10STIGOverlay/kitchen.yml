@@ -42,7 +42,7 @@ platforms:
     driver:
       name: vagrant
       vm_hostname: windows-10
-      box: gusztavvargadr/windows-10 
+      box: gusztavvargadr/windows-10-enterprise-ltsc
 
 suites:
   - name: Win10STIGOverlay

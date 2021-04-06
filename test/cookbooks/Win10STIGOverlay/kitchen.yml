@@ -24,7 +24,7 @@ verifier:
   sudo: true
   reporter:
     - cli
-    - json:%{suite}-test-results.json
+    - json:%{suite}-%{platform}-test-results.json
   inspec_tests:
     - name: Sample Microsoft Windows 10 STIG Overlay 
       path: ../../../
@@ -42,6 +42,13 @@ platforms:
     driver:
       name: vagrant
       vm_hostname: windows-10
+      box: gusztavvargadr/windows-10
+  - name: windows-10-ltsc
+    os_type: windows
+    shell_type: powershell
+    driver:
+      name: vagrant
+      vm_hostname: windows-10-ltsc
       box: gusztavvargadr/windows-10-enterprise-ltsc
 
 suites:

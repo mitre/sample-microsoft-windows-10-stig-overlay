@@ -1,5 +1,21 @@
 
 include_controls 'microsoft-windows-10-stig-baseline' do
+  control 'V-63319' do
+    is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+    if is_domain == 'WORKGROUP'
+      impact 0.0
+      describe 'This system is not joined to a domain, therefore this control is Not Applicable' do
+        skip 'This system is not joined to a domain, therefore this control is Not Applicable'
+      end
+    else
+      describe os.arch do
+        it { should eq 'x86_64' }
+      end
+      describe os.name do
+        it { should eq 'windows_10_enterprise' }
+      end
+    end
+  end
   control 'V-63321' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
@@ -21,7 +37,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     else
       query = json({ command: 'Get-BitlockerVolume | Select ProtectionStatus | ConvertTo-Json' })
       describe 'Verify all Windows 10 information systems (including SIPRNET) employ BitLocker for full disk encryption.' do
-        subject { query.params.first }
+        subject { query.params }
         its(['ProtectionStatus']) { should be 1 }
       end
     end
@@ -45,6 +61,22 @@ include_controls 'microsoft-windows-10-stig-baseline' do
   control 'V-63347' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
+  end
+  control 'V-63363' do
+    backup_operators = input('backup_operators')
+    backup_operators_group = command("net localgroup 'Backup Operators' | Format-List | Findstr /V 'Alias Name Comment Members - command'").stdout.strip.split("\r\n")
+  
+    backup_operators_group.each do |user|
+      describe user.to_s do
+        it { should be_in backup_operators }
+      end
+    end
+    if backup_operators_group.empty?
+      impact 0.0
+      describe 'There are no users with administrative privileges' do
+        skip 'This control is not applicable'
+      end
+    end
   end
   control 'V-63369' do
     impact 0.0
@@ -334,6 +366,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
+  
   control 'V-102627' do
     title "Windows 10 must use multifactor authentication for local and network access to     
           privileged and non-privileged accounts."
@@ -380,12 +413,12 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     tag responsibility: nil
     tag ia_controls: nil
 
-    desc "check", "If the system is a member of a domain this is Not Applicable.
+    desc "check", 'If the system is a member of a domain this is Not Applicable.
 
           If one of the following settings does not exist and is not populated, this is a finding: 
           
-          Computer\\HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers
-          Computer\\HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards"
+          Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers
+          Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards'
 
     desc "fix", "For non-domain joined systems, configuring Windows Hello for sign on options
           would be suggested based on the organizations needs and capabilities.

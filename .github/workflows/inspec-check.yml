@@ -1,7 +1,5 @@
 name: InSpec Check
 
-on:
-  workflow_dispatch:
 
 jobs:
   container:

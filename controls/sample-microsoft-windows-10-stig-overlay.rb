@@ -63,7 +63,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
   control 'V-63349' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     proper_minimum_release_id = is_ltsc ? '1507' : '1703'
 
     describe registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion') do
@@ -252,7 +252,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
   control 'V-63659' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     if is_ltsc
       impact 0.0
       describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
@@ -282,7 +282,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
   control 'V-63699' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     if input('sensitive_system') == 'true'
       impact 0.0
       describe 'This Control is Not Applicable to sensitive systems.' do
@@ -301,7 +301,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     end
   end
   control 'V-63701' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     if input('sensitive_system') == 'true'
       impact 0.0
       describe 'This Control is Not Applicable to sensitive systems.' do
@@ -320,7 +320,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     end
   end
   control 'V-63709' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     if is_ltsc
       impact 0.0
       describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
@@ -334,7 +334,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     end
   end
   control 'V-63713' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     if input('sensitive_system') == 'true'
       impact 0.0
       describe 'This Control is Not Applicable to sensitive systems.' do
@@ -433,7 +433,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
   control 'V-82139' do
-    is_ltsc = command('gwmi win32_operatingsystem | select OperatingSystemSKU').stdout.split[-1].strip.to_i >= 123
+    is_ltsc = os.name.downcase.include?("lts")
     if is_ltsc
       impact 0.0
       describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do

@@ -86,8 +86,8 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     end
     if backup_operators_group.empty?
       impact 0.0
-      describe 'There are no users with administrative privileges' do
-        skip 'This control is not applicable'
+      describe 'There are no users with backup operator privileges, this control is not applicable' do
+        skip 'There are no users with backup operator privileges, this control is not applicable'
       end
     end
   end

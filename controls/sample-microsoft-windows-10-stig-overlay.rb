@@ -62,6 +62,19 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
+  control 'V-63349' do
+    is_ltsc = os.name.downcase.include?("lts")
+    proper_minimum_release_id = is_ltsc ? '1507' : '1703'
+
+    describe registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion') do
+        it { should have_property 'CurrentBuildNumber' }
+        its('ReleaseId') { should be >= proper_minimum_release_id }
+    end
+    describe registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion') do
+        it { should have_property 'CurrentVersion' }
+        its('CurrentVersion') { should be >= '6.3' }
+    end
+  end
   control 'V-63363' do
     backup_operators = input('backup_operators')
     backup_operators_group = command("net localgroup 'Backup Operators' | Format-List | Findstr /V 'Alias Name Comment Members - command'").stdout.strip.split("\r\n")
@@ -238,6 +251,20 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
+  control 'V-63659' do
+    is_ltsc = os.name.downcase.include?("lts")
+    if is_ltsc
+      impact 0.0
+      describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
+        skip 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA'
+      end
+    else
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System') do
+        it { should have_property 'MSAOptional' }
+        its('MSAOptional') { should cmp 1 }
+      end
+    end
+  end
   control 'V-63669' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
@@ -253,6 +280,77 @@ include_controls 'microsoft-windows-10-stig-baseline' do
   control 'V-63689' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
+  end
+  control 'V-63699' do
+    is_ltsc = os.name.downcase.include?("lts")
+    if input('sensitive_system') == 'true'
+      impact 0.0
+      describe 'This Control is Not Applicable to sensitive systems.' do
+        skip 'This Control is Not Applicable to sensitive systems.'
+      end
+    elsif is_ltsc
+      impact 0.0
+      describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
+        skip 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA'
+      end
+    else
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter') do
+        it { should have_property 'PreventOverride' }
+        its('PreventOverride') { should cmp 1 }
+      end
+    end
+  end
+  control 'V-63701' do
+    is_ltsc = os.name.downcase.include?("lts")
+    if input('sensitive_system') == 'true'
+      impact 0.0
+      describe 'This Control is Not Applicable to sensitive systems.' do
+        skip 'This Control is Not Applicable to sensitive systems.'
+      end
+    elsif is_ltsc
+      impact 0.0
+      describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
+        skip 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA'
+      end
+    else
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter') do
+        it { should have_property 'PreventOverrideAppRepUnknown' }
+        its('PreventOverrideAppRepUnknown') { should cmp 1 }
+      end
+    end
+  end
+  control 'V-63709' do
+    is_ltsc = os.name.downcase.include?("lts")
+    if is_ltsc
+      impact 0.0
+      describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
+        skip 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA'
+      end
+    else
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main') do
+        it { should have_property 'FormSuggest Passwords' }
+        its('FormSuggest Passwords') { should cmp 'no' }
+      end
+    end
+  end
+  control 'V-63713' do
+    is_ltsc = os.name.downcase.include?("lts")
+    if input('sensitive_system') == 'true'
+      impact 0.0
+      describe 'This Control is Not Applicable to sensitive systems.' do
+        skip 'This Control is Not Applicable to sensitive systems.'
+      end
+    elsif is_ltsc
+      impact 0.0
+      describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
+        skip 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA'
+      end
+    else
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter') do
+        it { should have_property 'EnabledV9' }
+        its('EnabledV9') { should cmp 1 }
+      end
+    end
   end
   control 'V-63729' do
     impact 0.0
@@ -333,6 +431,27 @@ include_controls 'microsoft-windows-10-stig-baseline' do
   control 'V-77095' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
+  end
+  control 'V-82139' do
+    is_ltsc = os.name.downcase.include?("lts")
+    if is_ltsc
+      impact 0.0
+      describe 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA' do
+        skip 'This System is running either Windows 10 LTSB or Windows 10 LTSC, The Control is NA'
+      end
+    else
+      if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId >= '1809'
+        describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Internet Settings') do
+          it { should have_property 'PreventCertErrorOverrides' }
+          its('PreventCertErrorOverrides') { should cmp 1 }
+        end
+      else
+        impact 0.0
+        describe 'This setting is applicable starting with v1809 of Windows 10; it is NA for prior versions' do
+          skip 'This setting is applicable starting with v1809 of Windows 10; it is NA for prior versions.'
+        end
+      end
+    end
   end
   control 'V-94719' do
     impact 0.0

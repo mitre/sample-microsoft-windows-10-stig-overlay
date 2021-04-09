@@ -9,3 +9,14 @@ version: 0.1.0
 depends:
   - name: microsoft-windows-10-stig-baseline
     url: https://github.com/mitre/microsoft-windows-10-stig-baseline/archive/master.tar.gz 
+inputs:
+  - name: c_folder_permissions
+    desc: "Default Permissions for C:\\ Folder on OS"
+    type: Array
+    value:
+      - NT AUTHORITY\Authenticated Users:(AD)
+      - NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(M)
+      - NT AUTHORITY\SYSTEM:(OI)(CI)(F)
+      - BUILTIN\Administrators:(OI)(CI)(F)
+      - BUILTIN\Users:(OI)(CI)(RX)
+      - Mandatory Label\High Mandatory Level:(OI)(NP)(IO)(NW)

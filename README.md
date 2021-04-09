@@ -24,23 +24,20 @@ Latest versions and other installation options are available at the [InSpec](htt
 The following inputs must be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
 ```
-
 # Set flag to "true" if the target system is sensitive
 is_sensitive_system: "false"
 
-# List of authorized users in the Backup Operators group
-backup_operators: 
+# List of authorized users in the Backup Operators group e.g. ["Joe", "Gina"]
+backup_operators: []
 
-# List of authorized users in the local Administrators group
+# List of authorized users in the local Administrators group e.g. ["Joe", "Gina"]
 administrators: []
 
-# List of authorized users in the Hyper-V Group
+# List of authorized users in the Hyper-V Group e.g. ["Joe", "Gina"]
 hyper_v_admin: []
 
-# This is a list of Approved Anti-Virus Software
-av_approved_software: ["Windows Defender", "McAfee Host Intrusion Prevention", "McAfee Endpoint Security", "McAfee Agent"]
-
-bitlocker_status: []
+# This is a list of Approved Anti-Virus Software e.g. ["Windows Defender", "McAfee Host Intrusion Prevention", "McAfee Endpoint Security", "McAfee Agent"]
+av_approved_software: []
 
 ```
 

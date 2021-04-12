@@ -25,7 +25,7 @@ The following inputs must be configured in an inputs ".yml" file for the profile
 
 ```
 # Set flag to "true" if the target system is sensitive
-sensitive_system: "false"
+is_sensitive_system: "false"
 
 # List of authorized users in the Backup Operators group e.g. ["Joe", "Gina"]
 backup_operators: []

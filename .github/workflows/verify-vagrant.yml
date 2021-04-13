@@ -42,16 +42,21 @@ jobs:
           bundle install
       - name: Run kitchen test
         run: |
-          cd test/cookbooks/Win10STIGOverlay
+          cd test/cookbooks/${{ matrix.suite }}
           bundle exec kitchen list --log-level=debug all || true
           bundle exec kitchen test --destroy=always ${{ matrix.suite }} || true
-      - name: Display our Windows 10 results summary
+      - name: Display our ${{ matrix.suite }} results summary
         run: |
-          cd test/cookbooks/Win10STIGOverlay
-          bundle exec inspec_tools summary -j ${{ matrix.suite }}-test-results.json --json-counts | jq .
+          cd test/cookbooks/${{ matrix.suite }}
+          bundle exec inspec_tools summary -j windows-10-ltsc-${{ matrix.suite }}-results.json --json-counts | jq .
+          bundle exec inspec_tools summary -j windows-10-${{ matrix.suite }}-results.json --json-counts | jq .
+      - name: Ensure the scan meets our ${{ matrix.suite }} results threshold
+        run: |
+          bundle exec inspec_tools compliance -j test/cookbooks/${{ matrix.suite }}/windows-10-ltsc-${{ matrix.suite }}-results.json -f ${{ matrix.suite }}.threshold.yml
+          bundle exec inspec_tools compliance -j test/cookbooks/${{ matrix.suite }}/windows-10-${{ matrix.suite }}-results.json -f ${{ matrix.suite }}.threshold.yml
       - name: Save Test Result JSON
         uses: actions/upload-artifact@v2
         with:
-          path: test/cookbooks/Win10STIGOverlay/*-results.json
+          path: test/cookbooks/${{ matrix.suite }}/*-results.json
           if-no-files-found: error
 

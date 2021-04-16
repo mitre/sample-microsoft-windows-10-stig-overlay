@@ -239,6 +239,20 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
   end
+  control 'V-63633' do
+    is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+    if is_domain == 'WORKGROUP'
+      impact 0.0
+      describe 'The system is not a member of a domain, control is NA' do
+        skip 'The system is not a member of a domain, control is NA'
+      end
+    else
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System') do
+        it { should have_property 'EnumerateLocalUsers' }
+        its('EnumerateLocalUsers') { should cmp 0 }
+      end
+    end
+  end
   control 'V-63635' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'

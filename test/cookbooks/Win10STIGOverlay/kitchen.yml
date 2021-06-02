@@ -24,7 +24,7 @@ verifier:
   sudo: true
   reporter:
     - cli
-    - json:%{suite}-%{platform}-test-results.json
+    - json:%{platform}-%{suite}-test-results.json
   inspec_tests:
     - name: Sample Microsoft Windows 10 STIG Overlay 
       path: ../../../

@@ -9,10 +9,10 @@ include_controls 'microsoft-windows-10-stig-baseline' do
       end
     else
       describe os.arch do
-        it { should eq 'x86_64' }
+        it { should cmp 'x86_64' }
       end
       describe os.name do
-        it { should eq 'windows_10_enterprise' }
+        it { should cmp 'windows_10_enterprise' }
       end
     end
   end
@@ -38,7 +38,7 @@ include_controls 'microsoft-windows-10-stig-baseline' do
       query = json({ command: 'Get-BitlockerVolume | Select ProtectionStatus | ConvertTo-Json' })
       describe 'Verify all Windows 10 information systems (including SIPRNET) employ BitLocker for full disk encryption.' do
         subject { query.params }
-        its(['ProtectionStatus']) { should be 1 }
+        its(['ProtectionStatus']) { should cmp 1 }
       end
     end
   end
@@ -68,11 +68,11 @@ include_controls 'microsoft-windows-10-stig-baseline' do
 
     describe registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion') do
         it { should have_property 'CurrentBuildNumber' }
-        its('ReleaseId') { should be >= proper_minimum_release_id }
+        its('ReleaseId') { should cmp >= proper_minimum_release_id }
     end
     describe registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion') do
         it { should have_property 'CurrentVersion' }
-        its('CurrentVersion') { should be >= '6.3' }
+        its('CurrentVersion') { should cmp >= '6.3' }
     end
   end
   control 'V-63363' do

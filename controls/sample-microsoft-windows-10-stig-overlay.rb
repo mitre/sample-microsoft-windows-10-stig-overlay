@@ -37,8 +37,8 @@ include_controls 'microsoft-windows-10-stig-baseline' do
     else
       query = json({ command: 'Get-BitlockerVolume | Select ProtectionStatus | ConvertTo-Json' })
       describe 'Verify all Windows 10 information systems (including SIPRNET) employ BitLocker for full disk encryption.' do
-        subject { query.params }
-        its(['ProtectionStatus']) { should cmp 1 }
+        subject { query.params[0]['ProtectionStatus'] } 
+        it { should cmp 1 }
       end
     end
   end
@@ -393,6 +393,14 @@ include_controls 'microsoft-windows-10-stig-baseline' do
   control 'V-63829' do
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not included in ***SPONSOR*** policy'
+  end
+  control 'V-63871' do
+    impact 0.0
+    desc 'justification', 'This is Not Applicable since the related security control is associated with Windows 10 Enterprise'
+  end
+  control 'V-63877' do
+    impact 0.0
+    desc 'justification', 'This is Not Applicable since the related security control is associated with Windows 10 Enterprise'
   end
   control 'V-63879' do
     impact 0.0

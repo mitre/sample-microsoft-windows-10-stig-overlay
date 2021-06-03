@@ -14,7 +14,7 @@ inputs:
     desc: "Default Permissions for C:\\ Folder on OS"
     type: Array
     value:
-      - NT AUTHORITY\Authenticated Users:(S,AD)
+      - NT AUTHORITY\Authenticated Users:(AD)
       - NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(M)
       - NT AUTHORITY\SYSTEM:(OI)(CI)(F)
       - BUILTIN\Administrators:(OI)(CI)(F)
